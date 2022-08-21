@@ -11,7 +11,7 @@
 
         private static void StackDoubles()
         {
-            var stack = new SimpleStackDouble();
+            var stack = new SimpleStack<double>();
             stack.Push(1.2);
             stack.Push(2.8);
             stack.Push(3.0);
@@ -30,7 +30,7 @@
 
         private static void StackStrings()
         {
-            var stack = new SimpleStackString();
+            var stack = new SimpleStack<string>();
             stack.Push("Pluralsight");
             stack.Push("Café e muito bom");
 
