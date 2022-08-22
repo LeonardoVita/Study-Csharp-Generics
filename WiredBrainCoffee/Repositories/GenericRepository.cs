@@ -2,11 +2,12 @@
 
 namespace WiredBrainCoffee.Repositories
 {
-    public class GenericRepository<T>
+    public class GenericRepository<TItem, TKey>
     {
-        protected readonly List<T> _items = new List<T>();
+        public TKey? Key { get; set; }
+        protected readonly List<TItem> _items = new List<TItem>();
 
-        public void Add(T item)
+        public void Add(TItem item)
         {
             _items.Add(item);
         }
@@ -20,9 +21,9 @@ namespace WiredBrainCoffee.Repositories
         }
     }
 
-    public class GenericRepositoryWithRemove<T> : GenericRepository<T>
+    public class GenericRepositoryWithRemove<TItem, TKey> : GenericRepository<TItem, TKey>
     {
-        public void Remove(T item)
+        public void Remove(TItem item)
         {
             _items.Remove(item);
         }
