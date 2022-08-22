@@ -7,9 +7,10 @@ namespace WiredBrainCoffee
     {
         static void Main(string[] args)
         {
-            var employeeRepository = new GenericRepository<Employee>();
+            var employeeRepository = new GenericRepositoryWithRemove<Employee>();
             employeeRepository.Add(new Employee { FirstName= "Julia"});
             employeeRepository.Add(new Employee { FirstName= "Anna"});
+            //employeeRepository.Remove();
             employeeRepository.Add(new Employee { FirstName= "Thomas"});
             employeeRepository.save();
 
