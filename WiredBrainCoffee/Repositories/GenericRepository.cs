@@ -21,7 +21,7 @@ namespace WiredBrainCoffee.Repositories
         }
     }
 
-    public class GenericRepositoryWithRemove<TItem, TKey> : GenericRepository<TItem, TKey>
+    public class GenericRepositoryWithRemove<TItem> : GenericRepository<TItem, string>
     {
         public void Remove(TItem item)
         {
