@@ -4,24 +4,21 @@ using WiredBrainCoffee.Entities;
 
 namespace WiredBrainCoffee.Repositories
 {
-    public class GenericRepository<TItem,TKey> 
-        where TItem : class, IEntity
-        //where TKey : struct
-        where TKey : TItem
+    public class GenericRepository<T> where T : IEntity
     {
-        private readonly List<TItem> _items = new List<TItem>();        
+        private readonly List<T> _items = new List<T>();        
 
-        public TItem GetById(int id)
+        public T GetById(int id)
         {
             return _items.Single(item => item.Id == id);
         }
 
-        public void Add(TItem item)
+        public void Add(T item)
         {
             item.Id = _items.Count + 1;
             _items.Add(item);
         }
-        public void Remove(TItem item)
+        public void Remove(T item)
         {
             _items.Remove(item);
         }
