@@ -14,7 +14,12 @@ namespace WiredBrainCoffee.Repositories
             _dbSet = _dbContext.Set<T>();
         }
 
-        public T GetById(int id)
+        public IEnumerable<T> GetAll()
+        {
+            return _dbSet.ToList();            
+        }
+
+        public T? GetById(int id)
         {
             return _dbSet.Find(id);
         }

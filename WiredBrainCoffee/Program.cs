@@ -10,25 +10,35 @@ namespace WiredBrainCoffee
         {
             var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext());
             AddEmployees(employeeRepository);
-            GetEmployeeById(employeeRepository);
+            //GetEmployeeById(employeeRepository);
+            WriteAllToConsole(employeeRepository);
 
             var OrganizationRepository = new ListRepository<Organization>();
             AddOrganizations(OrganizationRepository);
-            GetOrganizationById(OrganizationRepository);
+            //GetOrganizationById(OrganizationRepository);
 
             Console.ReadLine();
+        }
+
+        private static void WriteAllToConsole(IRepository<Employee> employeeRepository)
+        {
+            var employess = employeeRepository.GetAll();
+            foreach (var employee in employess)
+            {
+                Console.WriteLine(employee.FirstName);
+            }
         }
 
         private static void GetOrganizationById(ListRepository<Organization> organizationRepository)
         {
             var organization = organizationRepository.GetById(1);
-            Console.WriteLine($"Organization with Id 0: {organization.Name}");
+            Console.WriteLine($"Organization with Id 0: {organization?.Name}");
         }
 
         private static void GetEmployeeById(IRepository<Employee> employeeRepository)
         {
             var employee = employeeRepository.GetById(2);
-            Console.WriteLine($"Employee with Id 2: {employee.FirstName}");
+            Console.WriteLine($"Employee with Id 2: {employee?.FirstName}");
         }
         private static void AddEmployees(IRepository<Employee> employeeRepository)
         {
