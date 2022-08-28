@@ -8,6 +8,7 @@ namespace WiredBrainCoffee
         static void Main(string[] args)
         {
             var employeeRepository = new GenericRepository<Employee>();
+            var employee = employeeRepository.CreateItem();
             AddEmployees(employeeRepository);
             GetEmployeeById(employeeRepository);
 
