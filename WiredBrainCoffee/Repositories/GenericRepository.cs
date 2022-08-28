@@ -4,14 +4,9 @@ using WiredBrainCoffee.Entities;
 
 namespace WiredBrainCoffee.Repositories
 {
-    public class GenericRepository<T> where T : class, IEntity, new()
+    public class GenericRepository<T> where T : class, IEntity
     {
-        private readonly List<T> _items = new List<T>();
-
-        public T  CreateItem()
-        {
-            return new T();
-        }
+        private readonly List<T> _items = new List<T>();        
 
         public T GetById(int id)
         {
