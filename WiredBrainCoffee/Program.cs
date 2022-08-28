@@ -7,23 +7,23 @@ namespace WiredBrainCoffee
     {
         static void Main(string[] args)
         {
-            var employeeRepository = new GenericRepository<Employee>();
+            var employeeRepository = new ListRepository<Employee>();
             AddEmployees(employeeRepository);
             GetEmployeeById(employeeRepository);
 
-            var OrganizationRepository = new GenericRepository<Organization>();
+            var OrganizationRepository = new ListRepository<Organization>();
             AddOrganizations(OrganizationRepository);
 
             Console.ReadLine();
         }
 
-        private static void GetEmployeeById(GenericRepository<Employee> employeeRepository)
+        private static void GetEmployeeById(ListRepository<Employee> employeeRepository)
         {
             var employee = employeeRepository.GetById(2);
             Console.WriteLine($"Employee with Id 2: {employee.FirstName}");
         }
 
-        private static void AddEmployees(GenericRepository<Employee> employeeRepository)
+        private static void AddEmployees(ListRepository<Employee> employeeRepository)
         {
             employeeRepository.Add(new Employee { FirstName = "Julia" });
             employeeRepository.Add(new Employee { FirstName = "Anna" });
@@ -31,7 +31,7 @@ namespace WiredBrainCoffee
             employeeRepository.save();
         }
 
-        private static void AddOrganizations(GenericRepository<Organization> OrganizationRepository)
+        private static void AddOrganizations(ListRepository<Organization> OrganizationRepository)
         {
             OrganizationRepository.Add(new Organization { Name = "Pluralsight" });
             OrganizationRepository.Add(new Organization { Name = "GloboSat" });

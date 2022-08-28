@@ -4,7 +4,7 @@ using WiredBrainCoffee.Entities;
 
 namespace WiredBrainCoffee.Repositories
 {
-    public class GenericRepository<T> where T : IEntity
+    public class ListRepository<T> where T : IEntity
     {
         private readonly List<T> _items = new List<T>();        
 
