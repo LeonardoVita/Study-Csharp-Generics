@@ -33,7 +33,7 @@ namespace WiredBrainCoffee.Repositories
             _dbSet.Remove(item);
         }
 
-        public void save()
+        public void Save()
         {
             _dbContext.SaveChanges();
         }

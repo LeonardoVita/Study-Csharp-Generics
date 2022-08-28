@@ -28,12 +28,9 @@ namespace WiredBrainCoffee.Repositories
             _items.Remove(item);
         }
 
-        public void save()
+        public void Save()
         {
-            foreach (var item in _items)
-            {
-                Console.WriteLine(item);
-            }
+            
         }
     }
 }

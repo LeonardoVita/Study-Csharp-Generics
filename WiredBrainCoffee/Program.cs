@@ -15,17 +15,18 @@ namespace WiredBrainCoffee
 
             var OrganizationRepository = new ListRepository<Organization>();
             AddOrganizations(OrganizationRepository);
+            WriteAllToConsole(OrganizationRepository);
             //GetOrganizationById(OrganizationRepository);
 
             Console.ReadLine();
         }
 
-        private static void WriteAllToConsole(IRepository<Employee> employeeRepository)
+        private static void WriteAllToConsole(IReadRepository<IEntity> Repository)
         {
-            var employess = employeeRepository.GetAll();
-            foreach (var employee in employess)
+            var items = Repository.GetAll();
+            foreach (var item in items)
             {
-                Console.WriteLine(employee.FirstName);
+                Console.WriteLine(item);
             }
         }
 
@@ -45,13 +46,13 @@ namespace WiredBrainCoffee
             employeeRepository.Add(new Employee { FirstName = "Julia" });
             employeeRepository.Add(new Employee { FirstName = "Anna" });
             employeeRepository.Add(new Employee { FirstName = "Thomas" });
-            employeeRepository.save();
+            employeeRepository.Save();
         }
         private static void AddOrganizations(IRepository<Organization> OrganizationRepository)
         {
             OrganizationRepository.Add(new Organization { Name = "Pluralsight" });
             OrganizationRepository.Add(new Organization { Name = "GloboSat" });
-            OrganizationRepository.save();
+            OrganizationRepository.Save();
         }
     }
 }
