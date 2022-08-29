@@ -59,16 +59,32 @@ namespace WiredBrainCoffee
         }
         private static void AddEmployees(IRepository<Employee> employeeRepository)
         {
-            employeeRepository.Add(new Employee { FirstName = "Julia" });
-            employeeRepository.Add(new Employee { FirstName = "Anna" });
-            employeeRepository.Add(new Employee { FirstName = "Thomas" });
-            employeeRepository.Save();
+            var employess = new[]
+            {
+                new Employee { FirstName = "Julia" },
+                new Employee { FirstName = "Anna" },
+                new Employee { FirstName = "Thomas" }
+            };
+            AddBatch(employeeRepository, employess);
         }
-        private static void AddOrganizations(IRepository<Organization> OrganizationRepository)
+        private static void AddOrganizations(IRepository<Organization> organizationRepository)
         {
-            OrganizationRepository.Add(new Organization { Name = "Pluralsight" });
-            OrganizationRepository.Add(new Organization { Name = "GloboSat" });
-            OrganizationRepository.Save();
+            var organizations = new[]
+            {
+                new Organization { Name = "Pluralsight" },
+                new Organization { Name = "GloboSat" }
+            };
+            AddBatch(organizationRepository, organizations);
+        }
+
+        private static void AddBatch<T>(IWriteRepository<T> repository, T[] items)
+        {
+            foreach (var item in items)
+            {
+                repository.Add(item);
+            }
+
+            repository.Save();
         }
     }
 }
