@@ -10,15 +10,31 @@ namespace WiredBrainCoffee
         {
             var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext());
             AddEmployees(employeeRepository);
+            AddManager(employeeRepository);
             //GetEmployeeById(employeeRepository);
             WriteAllToConsole(employeeRepository);
+
+            //contravariance for generic Writing method (in T)
+            //IWriteRepository<Manager> repo = new SqlRepository<Employee>(new StorageAppDbContext());
 
             var OrganizationRepository = new ListRepository<Organization>();
             AddOrganizations(OrganizationRepository);
             WriteAllToConsole(OrganizationRepository);
             //GetOrganizationById(OrganizationRepository);
 
+            //covariance for generic reading method (out T)
+            //IReadRepository<IEntity> repo = new SqlRepository<Employee>(new StorageAppDbContext());
+
             Console.ReadLine();
+        }
+
+        private static void AddManager(IWriteRepository<Manager> ManagerRepository)
+        {
+            //this nos work becase add methos only accepts Managers
+            //employeeRepository.Add(new Employee());
+            ManagerRepository.Add(new Manager { FirstName = "Sarah" });
+            ManagerRepository.Add(new Manager { FirstName = "Henry" });
+            ManagerRepository.Save();
         }
 
         private static void WriteAllToConsole(IReadRepository<IEntity> Repository)

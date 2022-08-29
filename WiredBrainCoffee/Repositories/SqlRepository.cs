@@ -16,7 +16,7 @@ namespace WiredBrainCoffee.Repositories
 
         public IEnumerable<T> GetAll()
         {
-            return _dbSet.ToList();            
+            return _dbSet.OrderBy(item => item.Id).ToList();            
         }
 
         public T? GetById(int id)
