@@ -32,7 +32,16 @@ namespace WiredBrainCoffee
         {
             //this nos work becase add methos only accepts Managers
             //employeeRepository.Add(new Employee());
-            ManagerRepository.Add(new Manager { FirstName = "Sarah" });
+            var saraManager = new Manager { FirstName = "Sarah" };
+            var saraManagerCopy = saraManager.Copy();
+            ManagerRepository.Add(saraManager);
+
+            if (saraManagerCopy is not null)
+            {
+                saraManagerCopy.FirstName += "_copy";
+                ManagerRepository.Add(saraManagerCopy);
+            }
+            
             ManagerRepository.Add(new Manager { FirstName = "Henry" });
             ManagerRepository.Save();
         }
@@ -65,7 +74,7 @@ namespace WiredBrainCoffee
                 new Employee { FirstName = "Anna" },
                 new Employee { FirstName = "Thomas" }
             };
-            AddBatch(employeeRepository, employess);
+            employeeRepository.AddBatch(employess);
         }
         private static void AddOrganizations(IRepository<Organization> organizationRepository)
         {
@@ -74,18 +83,7 @@ namespace WiredBrainCoffee
                 new Organization { Name = "Pluralsight" },
                 new Organization { Name = "GloboSat" }
             };
-            AddBatch(organizationRepository, organizations);
-        }
-
-        private static void AddBatch<T>(IRepository<T> repository, T[] items)
-            where T : IEntity
-        {
-            foreach (var item in items)
-            {
-                repository.Add(item);
-            }
-
-            repository.Save();
+            organizationRepository.AddBatch(organizations);
         }
     }
 }
