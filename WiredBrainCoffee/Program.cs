@@ -77,7 +77,8 @@ namespace WiredBrainCoffee
             AddBatch(organizationRepository, organizations);
         }
 
-        private static void AddBatch<T>(IWriteRepository<T> repository, T[] items)
+        private static void AddBatch<T>(IRepository<T> repository, T[] items)
+            where T : IEntity
         {
             foreach (var item in items)
             {
