@@ -8,7 +8,7 @@ namespace WiredBrainCoffee
     {
         static void Main(string[] args)
         {
-            var itemAdded = new ItemAdded<Employee>(EmployeeAdded);
+            var itemAdded = EmployeeAdded;
 
             var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext(),itemAdded);
             AddEmployees(employeeRepository);
