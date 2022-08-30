@@ -3,14 +3,14 @@ using WiredBrainCoffee.Entities;
 
 namespace WiredBrainCoffee.Repositories
 {
-    public delegate void ItemAdded(object item);
+    public delegate void ItemAdded<T>(T item) where T : IEntity;
     public class SqlRepository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly DbContext _dbContext;
-        private readonly ItemAdded? _itemAddedCallBack;
+        private readonly ItemAdded<T>? _itemAddedCallBack;
         private readonly DbSet<T> _dbSet;
 
-        public SqlRepository(DbContext dbContext,ItemAdded? itemAddedCallBack = null)
+        public SqlRepository(DbContext dbContext,ItemAdded<T>? itemAddedCallBack = null)
         {
             _dbContext = dbContext;
             _itemAddedCallBack = itemAddedCallBack;
