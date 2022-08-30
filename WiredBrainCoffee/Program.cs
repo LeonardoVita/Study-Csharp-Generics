@@ -7,10 +7,10 @@ namespace WiredBrainCoffee
     internal class Program
     {
         static void Main(string[] args)
-        {
-            var itemAdded = EmployeeAdded;
+        {   
+            var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext());
+            employeeRepository.ItemAdded += EmployeeRepository_ItemAdded; ;
 
-            var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext(),itemAdded);
             AddEmployees(employeeRepository);
             AddManager(employeeRepository);
             //GetEmployeeById(employeeRepository);
@@ -30,9 +30,9 @@ namespace WiredBrainCoffee
             Console.ReadLine();
         }
 
-        private static void EmployeeAdded(Employee employee)
+        private static void EmployeeRepository_ItemAdded(object? sender, Employee e)
         {
-            Console.WriteLine($"Employee Added -> {employee.FirstName}");
+            Console.WriteLine($"Employee Added -> {e.FirstName}");
         }
 
         private static void AddManager(IWriteRepository<Manager> ManagerRepository)
